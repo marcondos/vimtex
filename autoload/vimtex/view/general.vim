@@ -61,7 +61,7 @@ function! s:general.view(file) dict abort " {{{1
   let l:cmd = substitute(l:cmd, '@col', col('.'), 'g')
   if g:vimtex_view_general_viewer == 'SumatraPDF.exe'
       let l:cmd = substitute(l:cmd, '@tex',
-            \ vimtex#util#winpathescape(expand('%:p')), 'g')
+            \ vimtex#util#shellescape(vimtex#util#winpathescape(expand('%:p'))), 'g')
       let l:cmd = substitute(l:cmd, '@pdf', vimtex#util#winpathescape(outfile), 'g')
   else
       let l:cmd = substitute(l:cmd, '@tex',
