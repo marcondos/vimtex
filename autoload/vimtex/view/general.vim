@@ -59,9 +59,15 @@ function! s:general.view(file) dict abort " {{{1
   " Substitute magic patterns
   let l:cmd = substitute(l:cmd, '@line', line('.'), 'g')
   let l:cmd = substitute(l:cmd, '@col', col('.'), 'g')
-  let l:cmd = substitute(l:cmd, '@tex',
-        \ vimtex#util#winpathescape(expand('%:p')), 'g')
-  let l:cmd = substitute(l:cmd, '@pdf', vimtex#util#winpathescape(outfile), 'g')
+  if g:vimtex_view_general_viewer == 'SumatraPDF.exe'
+      let l:cmd = substitute(l:cmd, '@tex',
+            \ vimtex#util#winpathescape(expand('%:p')), 'g')
+      let l:cmd = substitute(l:cmd, '@pdf', vimtex#util#winpathescape(outfile), 'g')
+  else
+      let l:cmd = substitute(l:cmd, '@tex',
+            \ vimtex#util#shellescape(expand('%:p')), 'g')
+      let l:cmd = substitute(l:cmd, '@pdf', vimtex#util#shellescape(outfile), 'g')
+  endif
 
   " Start the view process
   let self.process = vimtex#process#start(l:cmd, {'silent': 0})
