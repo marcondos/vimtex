@@ -87,6 +87,7 @@ function! vimtex#util#winpathescape(cmd) abort " {{{1
     let l:cmd = substitute(a:cmd, '/mnt/c', 'C:', 'g')
     let l:cdm = substitute(l:cmd, '/', '\', 'g')
     return l:cmd
+endfunction
 
 " }}}1
 function! vimtex#util#shellescape(cmd) abort " {{{1
