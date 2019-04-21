@@ -60,7 +60,7 @@ function! s:general.view(file) dict abort " {{{1
   let l:cmd = substitute(l:cmd, '@line', line('.'), 'g')
   let l:cmd = substitute(l:cmd, '@col', col('.'), 'g')
   let l:cmd = substitute(l:cmd, '@tex',
-        \ vimtex#util#shellescape(expand('%:p')), 'g')
+        \ vimtex#util#winpathescape(expand('%:p')), 'g')
   let l:cmd = substitute(l:cmd, '@pdf', vimtex#util#winpathescape(outfile), 'g')
 
   " Start the view process
