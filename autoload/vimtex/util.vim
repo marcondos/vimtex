@@ -82,6 +82,13 @@ function! vimtex#util#extend_recursive(dict1, dict2, ...) abort " {{{1
 endfunction
 
 " }}}1
+function! vimtex#util#winpathescape(cmd) abort " {{{1
+    "
+    let l:cmd = substitute(a:cmd, '/mnt/c', 'C:', 'g')
+    let l:cdm = substitute(l:cmd, '/', '\', 'g')
+    return l:cmd
+
+" }}}1
 function! vimtex#util#shellescape(cmd) abort " {{{1
   "
   " Path used in "cmd" only needs to be enclosed by double quotes.
